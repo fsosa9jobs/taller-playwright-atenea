@@ -1,6 +1,6 @@
 {
     "usuarioValido": {
-        "firstname": "Juan",
+        "firstName": "Juan",
         "lastName": "perez",
         "email": "juancitoperez@gmail.com",
         "password": "123456"

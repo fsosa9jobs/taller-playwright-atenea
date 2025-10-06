@@ -42,11 +42,11 @@ export class RegisterPage {
     }
   }
 
-  async completarFormularioRegistro(firstname: string, lastName: string, email:string, password: string)
+  async completarFormularioRegistro(firstName: string, lastName: string, email:string, password: string)
   {
     try 
     {
-        await this.firstNameInput.fill(firstname);        
+        await this.firstNameInput.fill(firstName);        
         await this.lastNameInput.fill(lastName);   
         await this.emailInput.fill(email);   
         await this.passwordInput.fill(password);   
@@ -55,11 +55,11 @@ export class RegisterPage {
     }
   }
 
-  async completarFormularioRegistroJson(usuario: {firstname: string, lastName: string, email:string, password: string})
+  async completarFormularioRegistroJson(usuario: {firstName: string, lastName: string, email:string, password: string})
   {
     try 
     {
-        await this.firstNameInput.fill(usuario.firstname);        
+        await this.firstNameInput.fill(usuario.firstName);        
         await this.lastNameInput.fill(usuario.lastName);   
         await this.emailInput.fill(usuario.email);   
         await this.passwordInput.fill(usuario.password);   

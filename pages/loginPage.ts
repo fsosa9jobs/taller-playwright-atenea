@@ -1,5 +1,4 @@
 import { Page, Locator } from "@playwright/test";
-import { log } from "console";
 
 export class LoginPage {
   readonly page: Page;
@@ -38,7 +37,7 @@ export class LoginPage {
     }
   }
 
-  async completarFormularioLogin(firstname: string, lastName: string, email:string, password: string)
+  async completarFormularioLogin(firstName: string, lastName: string, email:string, password: string)
   {
     try 
     {
@@ -49,7 +48,7 @@ export class LoginPage {
     }
   }
 
-  async completarFormularioLoginJson(usuario: {firstname: string, lastName: string, email:string, password: string})
+  async completarFormularioLoginJson(usuario: {firstName: string, lastName: string, email:string, password: string})
   {
     try 
     {  
