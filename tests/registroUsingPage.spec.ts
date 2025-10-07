@@ -34,7 +34,7 @@ test("TC-03 Verificacion boton de registro se habilita al completar los campos o
   page,
 }) => {
   await regPage.completarFormularioRegistro(
-    TestData.usuarioValido.firstname,
+    TestData.usuarioValido.firstName,
     "Doe",
     "jhon.Doe@gmail.com",
     "jdoe123"
@@ -160,7 +160,7 @@ test("TC-09 Generar SIgnup desde la API", async ({ page, request }) => {
       'Content-Type': 'application/json',
     },
     data: {
-      firstName: TestData.usuarioValido.firstname,
+      firstName: TestData.usuarioValido.firstName,
       lastName: TestData.usuarioValido.lastName,
       email: TestData.usuarioValido.email,
       password: TestData.usuarioValido.password,
@@ -177,7 +177,7 @@ test("TC-09 Generar SIgnup desde la API", async ({ page, request }) => {
     expect(responseBody.user).toEqual(
       expect.objectContaining({
         id: expect.any(String),
-        firstName: TestData.usuarioValido.firstname,
+        firstName: TestData.usuarioValido.firstName,
         lastName: TestData.usuarioValido.lastName,
         email: TestData.usuarioValido.email,
       })
