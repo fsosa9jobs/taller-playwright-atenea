@@ -2,7 +2,7 @@ import { test as setup, expect } from '@playwright/test';
 import { BackendUtils } from '../utils/backendUtils';
 import TestData from '../data/testData.json';
 import { LoginPage } from '../pages/loginPage';
-import { DashboardPage } from '../pages/dashboardPage';
+import { DashboardPage } from '../pages/dashboardPage_back';
 import { ModalCrearCuenta } from '../pages/modalCrearCuenta';
 import fs from 'fs/promises';
 import path from 'path';
