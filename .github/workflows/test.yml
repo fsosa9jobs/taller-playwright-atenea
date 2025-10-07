@@ -46,7 +46,7 @@ jobs:
     - name: Construir backend
       run: |
         cd app/backend
-        npm run build > backend.log 2>&1 &
+        npm run dev > backend.log 2>&1 &
     
     #se instala la herramienta wait-on globalmente
     - name: Instalar wait-on
