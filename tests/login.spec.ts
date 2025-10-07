@@ -4,7 +4,8 @@ import { LoginPage } from "../pages/loginPage";
 import TestData from "../data/testData.json";
 
 import { BackendUtils } from '../utils/backendUtils';
-import { DashboardPage } from "../pages/dashboardPage";
+
+import { DashboardPage } from '../pages/dashboardPage'
 
 let loginPage: LoginPage;
 let dashboardPage: DashboardPage;
