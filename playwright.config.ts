@@ -13,8 +13,8 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
-  /* Run tests in files in parallel */
-  fullyParallel: true,
+  /* Run tests in files in parallel VA A EJECUTAR UN CASO TRABAJADORES DISTINTOS. (ESTABA EN TRUE)*/
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only    SE REALIZARON CAMBIOS EN EN.CI*/
