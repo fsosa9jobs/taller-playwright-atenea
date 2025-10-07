@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
-        branches: [main]
+    branches: [main]
     
 jobs:
 
@@ -13,30 +13,30 @@ jobs:
     services: 
       mongo:
         image: mongo:6.0
-        port: 
-         - 27017:27017
+        ports: 
+        - 27017:27017
 
-  env: 
-      MONGO_url: ${{ secrets.MONGO_URI }}
+    env: 
+      MONGO_URI: ${{ secrets.MONGO_URI }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       PORT: 6007
       VITE_API_URL: http://localhost:6007/api
 
-  steps:
+    steps:
     - name: Checkout repo actula (con el workflow)
-      uses: action/checkout@v3
+      uses: actions/checkout@v3
 
     - name: Clonar repo athena redux bank
       run:  
-        git clone git@github.com:Atenea-Conocimientos/redux-athena-bank.git
+        git clone https://github.com/Atenea-Conocimientos/redux-athena-bank.git app        
 
     - name: Crear archivo .env para backend
       run: |
           
-          echo "MONGO_url: ${{ env.MONGO_URI }}" > backend/.env
-          echo "JWT_SECRET: ${{ env.JWT_SECRET }}" > backend/.env
-          echo "PORT: 6007" > backend/.env
-          echo "VITE_API_URL: ${{ env.VITE_API_URL }}" > backend/.env
+          echo "MONGO_url: ${{ env.MONGO_URI }}" > app/backend/.env
+          echo "JWT_SECRET: ${{ env.JWT_SECRET }}" > app/backend/.env
+          echo "PORT: 6007" > app/backend/.env
+          echo "VITE_API_URL: ${{ env.VITE_API_URL }}" > app/backend/.env
 
     - name: Instalar dependencias de backend
       run: |
@@ -46,7 +46,7 @@ jobs:
     - name: Construir backend
       run: |
         cd app/backend
-        npm run build > backend.log 2>&1 &
+        npm run dev > backend.log 2>&1 &
     
     #se instala la herramienta wait-on globalmente
     - name: Instalar wait-on
@@ -63,6 +63,11 @@ jobs:
         npm install
       env: 
         VITE_API_URL: ${{ env.VITE_API_URL}}
+
+    - name: Construir backfrontendend
+      run: |
+        cd app/frontend
+        npm run dev > frontend.log 2>&1 &
 
     #esperar que se levante el fron
     - name: esperando frontend
