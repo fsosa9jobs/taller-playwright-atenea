@@ -43,8 +43,12 @@ setup('Generar usuario que envía dinero', async ({ page, request }) => {
 await page.waitForTimeout(5000);
  })
 
-setup('Loguearse con usuario que recibe dinero', async ({ page }) => {
-    await loginPage.completarFormularioLoginJson(TestData.usuarioValido);
+setup('crear y luego Loguearse con usuario que recibe dinero', async ({ page, request  }) => {
+
+    const nuevoUsuario = await BackendUtils.crearUsuarioPorAPI(request, TestData.usuarioValido, false);
+
+    await loginPage.completarFormularioLoginJson(nuevoUsuario);
+
     await loginPage.loginButton.click();    
     await expect(dashboardPage.dashboardTitle).toBeVisible();
     await page.context().storageState({ path: usuarioRecibeAuthFile });
