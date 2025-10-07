@@ -106,6 +106,17 @@ jobs:
 
         cp -r $GITHUB_WORKSPACE/playwright-report/* ./report-${GITHUB_RUN_NUMBER}
 
+        # 👇 copiar los traces (si existen)
+        if [ -d "$GITHUB_WORKSPACE/test-results" ]; then
+          echo "Copiando traces desde test-results..."
+          cp -r $GITHUB_WORKSPACE/test-results ./report-${GITHUB_RUN_NUMBER}/
+        elif [ -d "$GITHUB_WORKSPACE/playwright/.cache" ]; then
+          echo "Copiando traces desde playwright/.cache..."
+          cp -r $GITHUB_WORKSPACE/playwright/.cache ./report-${GITHUB_RUN_NUMBER}/
+        fi
+
+        find ./report-${GITHUB_RUN_NUMBER} -type f -name "*.zip" || echo "No se encontraron traces .zip"
+
         ls -R ./report-${GITHUB_RUN_NUMBER}
 
         git add .
