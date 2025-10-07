@@ -24,7 +24,7 @@ jobs:
 
     steps:
     - name: Checkout repo actula (con el workflow)
-      uses: action/checkout@v3
+      uses: actions/checkout@v3
 
     - name: Clonar repo athena redux bank
       run:  
