@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { LoginPage } from "../pages/loginPage";
 
 import TestData from "../data/testData.json";
-import { DashboardPage } from "../pages/dashboardPage";
+import { DashboardPage } from "../pages/dashboardPage_back";
 import { BackendUtils } from '../utils/backendUtils';
 
 let loginPage: LoginPage;
