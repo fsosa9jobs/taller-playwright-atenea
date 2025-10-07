@@ -64,6 +64,11 @@ jobs:
       env: 
         VITE_API_URL: ${{ env.VITE_API_URL}}
 
+    - name: Construir backfrontendend
+      run: |
+        cd app/frontend
+        npm run dev > frontend.log 2>&1 &
+
     #esperar que se levante el fron
     - name: esperando frontend
       run : wait-on http://localhost:3000
