@@ -45,7 +45,7 @@ await page.waitForTimeout(5000);
 
 setup('crear y luego Loguearse con usuario que recibe dinero', async ({ page, request  }) => {
 
-    const nuevoUsuario = await BackendUtils.crearUsuarioPorAPI(request, TestData.usuarioValido, false);
+    const nuevoUsuario = await BackendUtils.crearUsuarioPorAPI(request, TestData.usuarioValido, true);
 
     await loginPage.completarFormularioLoginJson(nuevoUsuario);
 
