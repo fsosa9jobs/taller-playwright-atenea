@@ -22,7 +22,7 @@ test("Tc-7 Verificar inicio de sesion exitoso con credenciales validas", async (
 
   const nuevoUsuario = await BackendUtils.crearUsuarioPorAPI(request, TestData.usuarioValido, false);
 
-  await loginPage.completarFormularioLoginJson(TestData.usuarioValido);
+  await loginPage.completarFormularioLoginJson(nuevoUsuario);
   await loginPage.loginButton.click();
   await expect(page.getByText("Inicio de sesión exitoso")).toBeVisible();
   await expect(dashboardPage.dashboardTitle).toBeVisible();
