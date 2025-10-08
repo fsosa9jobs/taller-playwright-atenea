@@ -25,7 +25,7 @@ test.beforeEach(async ({ page }) => {
 
 testUsuarioEnvia('TC-13 Verificar transacción exitosa', async ({ page }) => {
     testUsuarioEnvia.info().annotations.push({
-        type: 'Informacion de usuario que recibe',
+        type: 'Informacion de usuario que envia',
         description: TestData.usuarioValido.email
     });
     await expect(dashboardPage.dashboardTitle).toBeVisible();
@@ -35,6 +35,13 @@ testUsuarioEnvia('TC-13 Verificar transacción exitosa', async ({ page }) => {
 })
 
 testUsuarioRecibe('TC-14 Verificar que usuario reciba la transferencia', async ({ page }) => {
+
+testUsuarioRecibe.info().annotations.push({
+        type: 'Informacion de usuario que recibe',
+        description: TestData.usuarioValido.email
+    });
+
+
     await expect(dashboardPage.dashboardTitle).toBeVisible();
    // await expect(page.getByText('Transferencia de email').first()).toBeVisible();
     await expect(page.getByTestId('descripcion-transaccion').first()).toBeVisible();
