@@ -76,7 +76,7 @@ jobs:
     #empezr a ejecutar las pruebas
     - name: Instalr y ejecutar pruebas
       run: |
-        cd tests
+        
         npm install
         npx playwright install --with-deps
         npx playwright test --reporter=html
