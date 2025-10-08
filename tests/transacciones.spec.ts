@@ -5,9 +5,12 @@ import { DashboardPage } from '../pages/dashboardPage_back';
 import { ModalEnviarTransferencia } from '../pages/modalEnviarTransferencia';
 import TestData from '../data/testData.json';
 import fs from 'fs/promises';
+import { RegisterPage } from '../pages/registerPage';
 
 let dashboardPage: DashboardPage;
 let modalEnviarTransferencia: ModalEnviarTransferencia;
+
+let regPage: RegisterPage;
 
 const testUsuarioEnvia = test.extend({
     storageState: require.resolve('../playwright/.auth/usuarioEnvia.json')
@@ -20,23 +23,31 @@ const testUsuarioRecibe = test.extend({
 test.beforeEach(async ({ page }) => {
     dashboardPage = new DashboardPage(page);
     modalEnviarTransferencia = new ModalEnviarTransferencia(page);
+    regPage = new RegisterPage(page);    
+    await regPage.crearCuentaUsuario();
     await dashboardPage.visitarPaginaDashboard();
+
 })
 
-testUsuarioEnvia('TC-13 Verificar transacción exitosa', async ({ page }) => {
-    testUsuarioEnvia.info().annotations.push({
+testUsuarioEnvia('TC-13 Verificar transacción exitosa', async ({ page }) => 
+    {
+
+        testUsuarioEnvia.info().annotations.push({
         type: 'Informacion de usuario que envia',
         description: TestData.usuarioValido.email
     });
+
     await expect(dashboardPage.dashboardTitle).toBeVisible();
     await dashboardPage.botonEnviarDinero.click();
     await modalEnviarTransferencia.completarYHacerClickBotonEnviar(TestData.usuarioValido.email, '100');
     await expect(page.getByText('Transferencia enviada a ' + TestData.usuarioValido.email)).toBeVisible();
+
+    
 })
 
 testUsuarioRecibe('TC-14 Verificar que usuario reciba la transferencia', async ({ page }) => {
 
-testUsuarioRecibe.info().annotations.push({
+    testUsuarioRecibe.info().annotations.push({
         type: 'Informacion de usuario que recibe',
         description: TestData.usuarioValido.email
     });
@@ -45,6 +56,7 @@ testUsuarioRecibe.info().annotations.push({
     await expect(dashboardPage.dashboardTitle).toBeVisible();
    // await expect(page.getByText('Transferencia de email').first()).toBeVisible();
     await expect(page.getByTestId('descripcion-transaccion').first()).toBeVisible();
+
 })
 
 // Test unificado que envía dinero por API y verifica en la UI.
