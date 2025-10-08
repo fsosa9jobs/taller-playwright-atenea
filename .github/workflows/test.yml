@@ -117,7 +117,11 @@ jobs:
 
         find ./report-${GITHUB_RUN_NUMBER} -type f -name "*.zip" || echo "No se encontraron traces .zip"
 
+        echo "empieza ls"
+
         ls -R ./report-${GITHUB_RUN_NUMBER}
+
+        echo "termina ls"
 
         git add .
         git commit -m "reporte playwright - build $GITHUB_RUN_NUMBER"
