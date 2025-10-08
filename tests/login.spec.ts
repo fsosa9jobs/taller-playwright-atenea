@@ -20,6 +20,7 @@ test("Tc-7 Verificar inicio de sesion exitoso con credenciales validas", async (
   page, request
 }) => {
 
+  //que paso
   //const nuevoUsuario = await BackendUtils.crearUsuarioPorAPI(request, TestData.usuarioValido, false);
 
   await loginPage.completarFormularioLoginJson(TestData.usuarioValido);
