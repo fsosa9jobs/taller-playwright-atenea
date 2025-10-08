@@ -69,7 +69,7 @@ jobs:
         cd app/frontend
         npm run dev > frontend.log 2>&1 &
 
-    #esperar que se levante el fron
+    #esperar que se levante el fron now
     - name: esperando frontend
       run : wait-on http://localhost:3000
 
