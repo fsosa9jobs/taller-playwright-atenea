@@ -8,6 +8,7 @@ export class BackendUtils
 
     let email :string = '';
 
+    console.log(usuario);
 
     if(esNuevo)
     {
