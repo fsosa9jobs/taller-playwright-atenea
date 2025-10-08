@@ -1,0 +1,52 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - link [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img [ref=e6] [cursor=pointer]
+        - heading [level=6] [ref=e8] [cursor=pointer]: ATENEA BANK
+      - button [ref=e9] [cursor=pointer]: Cerrar sesión
+    - generic [ref=e11]:
+      - heading [level=4] [ref=e12]: Tablero Principal
+      - generic [ref=e13]:
+        - heading [level=6] [ref=e14]: Saldo total
+        - heading [level=3] [ref=e15]: $0.00
+      - generic [ref=e17] [cursor=pointer]:
+        - generic [ref=e19] [cursor=pointer]: +
+        - paragraph [ref=e20] [cursor=pointer]: Agregar cuenta
+      - generic [ref=e21]:
+        - button [ref=e22] [cursor=pointer]: Eliminar
+        - button [ref=e23] [cursor=pointer]: Agregar fondos
+        - button [ref=e24] [cursor=pointer]: Enviar
+      - heading [level=5] [ref=e26]: Lista de transacciones
+  - dialog [ref=e30]:
+    - heading [level=2] [ref=e31]: Enviar transferencia
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e34]: Email del destinatario *
+        - generic [ref=e35]:
+          - textbox [ref=e36]: juancitoperez@gmail.com
+          - group:
+            - generic: Email del destinatario *
+      - generic [ref=e37]:
+        - generic [ref=e38]: Cuenta origen *
+        - generic [ref=e39]:
+          - combobox [expanded] [ref=e40] [cursor=pointer]
+          - textbox
+          - img
+          - group:
+            - generic: Cuenta origen *
+      - generic [ref=e41]:
+        - generic: Monto a enviar *
+        - generic [ref=e42]:
+          - spinbutton [ref=e43]
+          - group:
+            - generic: Monto a enviar *
+    - generic [ref=e44]:
+      - button [ref=e45] [cursor=pointer]: Cancelar
+      - button [ref=e46] [cursor=pointer]: Enviar
+  - listbox "Cuenta origen *" [active] [ref=e49]
+```
