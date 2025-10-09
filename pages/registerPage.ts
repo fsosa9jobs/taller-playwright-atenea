@@ -1,9 +1,10 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, test } from "@playwright/test";
 import { log } from "console";
 import { LoginPage } from "../pages/loginPage";
 import { ModalCrearCuenta } from "./modalCrearCuenta";
 import TestData from "../data/testData.json";
 import { DashboardPage } from "./dashboardPage_back";
+
 
 export class RegisterPage {
   readonly page: Page;
@@ -85,7 +86,10 @@ export class RegisterPage {
   async crearCuentaUsuario(): Promise<boolean> 
   {
     try {
-      await this.logP.visitarPaginaLogin();
+
+      await this.crearUsuario();
+
+      await this.visitarPaginaLogin();
       await this.logP.completarFormularioLoginJson(TestData.usuarioValido);
       await this.logP.loginButton.click();
 
@@ -97,5 +101,23 @@ export class RegisterPage {
 
       return true;
     } catch (error) { return false }
+  }
+
+  async crearUsuario()
+  {
+
+
+
+  //   await this.visitarPaginaRegistro();
+  //   test.step("Completar formulario de registro con datos validos", async () => {
+  //   const email =
+  //     TestData.usuarioValido.email.split("@")[0] +
+  //     Date.now().toString() +
+  //     "@" +
+  //     TestData.usuarioValido.email.split("@")[1];
+  //   TestData.usuarioValido.email = email;
+  //   await this.completarFormularioRegistroJson(TestData.usuarioValido);
+  //   await this.registerButton.click();
+  // });
   }
 }

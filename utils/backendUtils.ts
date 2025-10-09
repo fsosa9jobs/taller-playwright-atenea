@@ -7,9 +7,7 @@ export class BackendUtils
   static async crearUsuarioPorAPI(request: APIRequestContext, usuario: any, esNuevo: boolean = true ) {
 
     let email :string = '';
-
-    console.log(usuario);
-
+   
     if(esNuevo)
     {
        email = (usuario.email.split('@'))[0] + Math.floor(Math.random() * 1000) + '@' + usuario.email.split('@')[1];
@@ -17,7 +15,7 @@ export class BackendUtils
     else
     {
       email = usuario.email;
-    }
+    }    
 
         const datosEnvio = {
                 firstName: usuario.firstName,

@@ -7,10 +7,16 @@ import TestData from '../data/testData.json';
 import fs from 'fs/promises';
 import { RegisterPage } from '../pages/registerPage';
 
+import { BackendUtils } from '../utils/backendUtils';
+import { LoginPage } from '../pages/loginPage';
+import { ModalCrearCuenta } from '../pages/modalCrearCuenta';
+
 let dashboardPage: DashboardPage;
 let modalEnviarTransferencia: ModalEnviarTransferencia;
+let modalCrearCuenta: ModalCrearCuenta;
 
 let regPage: RegisterPage;
+let loginPage: LoginPage;
 
 const testUsuarioEnvia = test.extend({
     storageState: require.resolve('../playwright/.auth/usuarioEnvia.json')
@@ -24,20 +30,37 @@ test.beforeEach(async ({ page }) => {
     dashboardPage = new DashboardPage(page);
     modalEnviarTransferencia = new ModalEnviarTransferencia(page);
     regPage = new RegisterPage(page);    
-    await regPage.crearCuentaUsuario();
-    await dashboardPage.visitarPaginaDashboard();
+    loginPage = new LoginPage(page);    
+    modalCrearCuenta = new ModalCrearCuenta(page);
+    // await regPage.crearCuentaUsuario();
+    // await dashboardPage.visitarPaginaDashboard();
 
 })
 
-testUsuarioEnvia('TC-13 Verificar transacción exitosa', async ({ page }) => 
-    {
+testUsuarioEnvia('TC-13 Verificar transacción exitosa', async ({ page, request }) => 
+{
+    const nuevoUsuario = await BackendUtils.crearUsuarioPorAPI(request, TestData.usuarioValido);
 
-        testUsuarioEnvia.info().annotations.push({
-        type: 'Informacion de usuario que envia',
-        description: TestData.usuarioValido.email
-    });
+    await loginPage.visitarPaginaLogin();
+
+    //TestData.usuarioValido.email = nuevoUsuario.email;
+
+    await loginPage.completarFormularioLoginJson(nuevoUsuario);
+    await loginPage.loginButton.click();
 
     await expect(dashboardPage.dashboardTitle).toBeVisible();
+
+    await dashboardPage.botonAgregarCuenta.click();
+
+    await modalCrearCuenta.seleccionarTipoDeCuenta("Débito");
+    await modalCrearCuenta.completarMonto("1000");
+    await modalCrearCuenta.botonCrearCuenta.click();
+
+    //     testUsuarioEnvia.info().annotations.push({
+    //     type: 'Informacion de usuario que envia',
+    //     description: TestData.usuarioValido.email });
+
+    // await expect(dashboardPage.dashboardTitle).toBeVisible();
     await dashboardPage.botonEnviarDinero.click();
     await modalEnviarTransferencia.completarYHacerClickBotonEnviar(TestData.usuarioValido.email, '100');
     await expect(page.getByText('Transferencia enviada a ' + TestData.usuarioValido.email)).toBeVisible();
