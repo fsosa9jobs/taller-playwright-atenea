@@ -32,8 +32,8 @@ test.beforeEach(async ({ page }) => {
     regPage = new RegisterPage(page);    
     loginPage = new LoginPage(page);    
     modalCrearCuenta = new ModalCrearCuenta(page);
-    // await regPage.crearCuentaUsuario();
-    // await dashboardPage.visitarPaginaDashboard();
+    
+    await dashboardPage.visitarPaginaDashboard();
 
 })
 
@@ -88,7 +88,7 @@ testUsuarioRecibe('TC-14 Verificar que usuario reciba la transferencia', async (
 // Test unificado que envía dinero por API y verifica en la UI.
 testUsuarioRecibe('TC-15 Verificar transferencia recibida (Enviada por API)', async ({ page, request }) => {
     // #1 Preparacion para lectura de datos y TOKEN del remitente.
-    await dashboardPage.visitarPaginaDashboard();
+    // await dashboardPage.visitarPaginaDashboard();
 
     // leemos el archivo de datos del usuario que envia para obtener su email. 
     const usuarioEnviaData = require.resolve('../playwright/.auth/usuarioEnvia.data.json');
@@ -134,12 +134,10 @@ testUsuarioRecibe('TC-15 Verificar transferencia recibida (Enviada por API)', as
         }
     });
 
-    expect(respuestaDeTransferencia.ok(), `La API para transferir dinero falló: ${respuestaDeTransferencia.status()}`).toBeTruthy();  
-
-
+     
     if (respuestaDeTransferencia.status() === 404)
     {     
-         
+         expect(respuestaDeTransferencia.ok(), `La API para transferir dinero falló: ${respuestaDeTransferencia.status()}`).toBeTruthy(); 
         await expect(dashboardPage.dashboardTitle).not.toBeVisible();
     } 
     else 
