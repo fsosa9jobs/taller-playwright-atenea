@@ -138,7 +138,7 @@ testUsuarioRecibe('TC-15 Verificar transferencia recibida (Enviada por API)', as
     if (respuestaDeTransferencia.status() === 404)
     {     
          expect(respuestaDeTransferencia.ok(), `La API para transferir dinero falló: ${respuestaDeTransferencia.status()}`).not.toBeTruthy();
-        await expect(dashboardPage.dashboardTitle).not.toBeVisible();
+        await expect(dashboardPage.dashboardTitle).toBeVisible();
     } 
     else 
     {
