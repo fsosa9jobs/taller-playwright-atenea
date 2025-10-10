@@ -77,6 +77,7 @@ testUsuarioRecibe('TC-14 Verificar que usuario reciba la transferencia', async (
         description: TestData.usuarioValido.email
     });
 
+    await dashboardPage.visitarPaginaDashboard();
 
     await expect(dashboardPage.dashboardTitle).not.toBeVisible();
    // await expect(page.getByText('Transferencia de email').first()).toBeVisible();
@@ -87,11 +88,12 @@ testUsuarioRecibe('TC-14 Verificar que usuario reciba la transferencia', async (
 // Test unificado que envía dinero por API y verifica en la UI.
 testUsuarioRecibe('TC-15 Verificar transferencia recibida (Enviada por API)', async ({ page, request }) => {
     // #1 Preparacion para lectura de datos y TOKEN del remitente.
+    await dashboardPage.visitarPaginaDashboard();
 
-    // leemos el archivo de datos del usuario que envia para obtener su email.
+    // leemos el archivo de datos del usuario que envia para obtener su email. 
     const usuarioEnviaData = require.resolve('../playwright/.auth/usuarioEnvia.data.json');
     const usuarioEnviaContenidoData = await fs.readFile(usuarioEnviaData, 'utf-8');
-    const datosDeUsuarioEnvia = JSON.parse(usuarioEnviaContenidoData);
+    const datosDeUsuarioEnvia = JSON.parse(usuarioEnviaContenidoData); console.log(datosDeUsuarioEnvia);
     const emailDeUsuarioEnvia = datosDeUsuarioEnvia.email;
     expect(emailDeUsuarioEnvia, 'El email del usuario que envia no se leyo correctamente desde el archivo').toBeDefined();
 
@@ -144,7 +146,8 @@ testUsuarioRecibe('TC-15 Verificar transferencia recibida (Enviada por API)', as
     {
         // #3 Verificacion: Comprobar que el monto llego al destinatario por UI
 
-    //await page.reload(); // Recargamos la pagina para que se actualicen los datos.
+    await page.reload(); // Recargamos la pagina para que se actualicen los datos.
+
     await page.waitForLoadState('networkidle');
     await expect(dashboardPage.dashboardTitle).toBeVisible();
 
