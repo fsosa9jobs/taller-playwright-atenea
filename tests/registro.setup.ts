@@ -2,7 +2,7 @@ import { test as setup, expect } from '@playwright/test';
 import { BackendUtils } from '../utils/backendUtils';
 import TestData from '../data/testData.json';
 import { LoginPage } from '../pages/loginPage';
-import { DashboardPage } from '../pages/dashboardPage';
+import { DashboardPage } from '../pages/dashboardPage_back';
 import { ModalCrearCuenta } from '../pages/modalCrearCuenta';
 import fs from 'fs/promises';
 import path from 'path';
@@ -43,8 +43,12 @@ setup('Generar usuario que envía dinero', async ({ page, request }) => {
 await page.waitForTimeout(5000);
  })
 
-setup('Loguearse con usuario que recibe dinero', async ({ page }) => {
-    await loginPage.completarFormularioLoginJson(TestData.usuarioValido);
+setup('crear y luego Loguearse con usuario que recibe dinero', async ({ page, request  }) => {
+
+    const nuevoUsuario = await BackendUtils.crearUsuarioPorAPI(request, TestData.usuarioValido, true);
+
+    await loginPage.completarFormularioLoginJson(nuevoUsuario);
+
     await loginPage.loginButton.click();    
     await expect(dashboardPage.dashboardTitle).toBeVisible();
     await page.context().storageState({ path: usuarioRecibeAuthFile });

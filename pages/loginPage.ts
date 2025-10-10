@@ -6,6 +6,7 @@ export class LoginPage {
   readonly passwordInput: Locator;
   readonly registerButton: Locator;
   readonly loginButton: Locator;
+  readonly logOutButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -13,6 +14,7 @@ export class LoginPage {
     this.passwordInput = page.locator('input[name="password"]');
     this.registerButton = page.getByTestId("boton-registrarse");
     this.loginButton = page.getByTestId("boton-login");
+    this.logOutButton = page.getByTestId("boton-logout");
   }
 
   async visitarPaginaLogin() {

@@ -2,8 +2,10 @@ import { test, expect } from "@playwright/test";
 import { LoginPage } from "../pages/loginPage";
 
 import TestData from "../data/testData.json";
-import { DashboardPage } from "../pages/dashboardPage";
+
 import { BackendUtils } from '../utils/backendUtils';
+
+import { DashboardPage } from '../pages/dashboardPage_back';
 
 let loginPage: LoginPage;
 let dashboardPage: DashboardPage;
@@ -15,9 +17,13 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("Tc-7 Verificar inicio de sesion exitoso con credenciales validas", async ({
-  page,
+  page, request
 }) => {
-  await loginPage.completarFormularioLoginJson(TestData.usuarioValido);
+
+  //que paso
+  const nuevoUsuario = await BackendUtils.crearUsuarioPorAPI(request, TestData.usuarioValido, true);
+
+  await loginPage.completarFormularioLoginJson(nuevoUsuario);
   await loginPage.loginButton.click();
   await expect(page.getByText("Inicio de sesión exitoso")).toBeVisible();
   await expect(dashboardPage.dashboardTitle).toBeVisible();

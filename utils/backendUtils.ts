@@ -4,9 +4,19 @@ import { log } from "console";
 
 export class BackendUtils
 {
-  static async crearUsuarioPorAPI(request: APIRequestContext, usuario: any) {
-        const email = (usuario.email.split('@'))[0] + Math.floor(Math.random() * 1000) + '@' + usuario.email.split('@')[1];
-        
+  static async crearUsuarioPorAPI(request: APIRequestContext, usuario: any, esNuevo: boolean = true ) {
+
+    let email :string = '';
+   
+    if(esNuevo)
+    {
+       email = (usuario.email.split('@'))[0] + Math.floor(Math.random() * 1000) + '@' + usuario.email.split('@')[1];
+    }
+    else
+    {
+      email = usuario.email;
+    }    
+
         const datosEnvio = {
                 firstName: usuario.firstName,
                 lastName: usuario.lastName,
