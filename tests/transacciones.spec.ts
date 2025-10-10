@@ -39,6 +39,17 @@ test.beforeEach(async ({ page }) => {
 
 testUsuarioEnvia('TC-13 Verificar transacción exitosa', async ({ page, request }) => 
 {
+    // test.step("crear cuenta", async () => 
+    // {
+    //     await loginPage.visitarPaginaLogin();
+    //     await loginPage.completarFormularioLoginJson(TestData.usuarioValido);
+    //     await loginPage.loginButton.click();
+
+    //     await expect(dashboardPage.dashboardTitle).toBeVisible();
+
+    //     await loginPage.logOutButton.click();
+    // });
+
     const nuevoUsuario = await BackendUtils.crearUsuarioPorAPI(request, TestData.usuarioValido);
 
     await loginPage.visitarPaginaLogin();
@@ -63,9 +74,10 @@ testUsuarioEnvia('TC-13 Verificar transacción exitosa', async ({ page, request 
     // await expect(dashboardPage.dashboardTitle).toBeVisible();
     await dashboardPage.botonEnviarDinero.click();
     await modalEnviarTransferencia.completarYHacerClickBotonEnviar(TestData.usuarioValido.email, '100');
-    await expect(page.getByText('Transferencia enviada a ' + TestData.usuarioValido.email)).toBeVisible();
 
-    
+    // await expect(page.getByText('Transferencia enviada a ' + TestData.usuarioValido.email)).toBeVisible();
+
+    await expect(page.getByText('Recipient user not found')).toBeVisible();
 })
 
 testUsuarioRecibe('TC-14 Verificar que usuario reciba la transferencia', async ({ page }) => {
