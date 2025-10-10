@@ -50,7 +50,7 @@ implementando buenas prácticas de diseño y flujos de CI/CD profesionales.
 ✅ Implementación del patrón POM y buenas prácticas QA.  
 ✅ Integración continua configurada con GitHub Actions.  
 ✅ Reportes de test hosteados en GitHub Pages.  
-✅ Certificación **oficial y blockchain** de Atenea Conocimientos.
+✅ Certificación **oficial** de Atenea Conocimientos.
 
 ---
 
@@ -68,7 +68,7 @@ implementando buenas prácticas de diseño y flujos de CI/CD profesionales.
 ## 📜 Certificación
 
 🎓 Curso completado y certificado oficialmente por **Atenea Conocimientos**  
-con tecnología **Blockchain verificable internacionalmente**.
+con tecnología **verificable internacionalmente**.
 
 ---
 
@@ -83,4 +83,4 @@ con tecnología **Blockchain verificable internacionalmente**.
 **Federico Sosa**  
 QA Automation Engineer  
 💼 Especializado en Playwright, CI/CD y Testing E2E  
-📧 contacto profesional: _[tu email o LinkedIn]_
+📧 contacto profesional: Fsosa9@gmail.com
