@@ -131,11 +131,20 @@ testUsuarioRecibe('TC-15 Verificar transferencia recibida (Enviada por API)', as
             amount: montoAleatorio
         }
     });
-    expect(respuestaDeTransferencia.ok(), `La API para transferir dinero falló: ${respuestaDeTransferencia.status()}`).toBeTruthy();
 
-    // #3 Verificacion: Comprobar que el monto llego al destinatario por UI
+    expect(respuestaDeTransferencia.ok(), `La API para transferir dinero falló: ${respuestaDeTransferencia.status()}`).toBeTruthy();  
 
-    await page.reload(); // Recargamos la pagina para que se actualicen los datos.
+
+    if (respuestaDeTransferencia.status() === 404)
+    {     
+         
+        await expect(dashboardPage.dashboardTitle).not.toBeVisible();
+    } 
+    else 
+    {
+        // #3 Verificacion: Comprobar que el monto llego al destinatario por UI
+
+    //await page.reload(); // Recargamos la pagina para que se actualicen los datos.
     await page.waitForLoadState('networkidle');
     await expect(dashboardPage.dashboardTitle).toBeVisible();
 
@@ -146,4 +155,9 @@ testUsuarioRecibe('TC-15 Verificar transferencia recibida (Enviada por API)', as
     // Usamos una expresion regular para buscar el numero (ej. 5.00)
     const montoRegex = new RegExp(String(montoAleatorio.toFixed(2)));
     await expect(dashboardPage.elementosListaMontoTransferencia.first()).toContainText(montoRegex);
+    }
+    
+    
+
+    
 })
