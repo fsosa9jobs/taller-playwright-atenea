@@ -80,7 +80,7 @@ con tecnología **Blockchain verificable internacionalmente**.
 
 ## 🧩 Autor
 
-**Francisco Sosa**  
+**Federico Sosa**  
 QA Automation Engineer  
 💼 Especializado en Playwright, CI/CD y Testing E2E  
 📧 contacto profesional: _[tu email o LinkedIn]_
