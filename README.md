@@ -84,3 +84,5 @@ con tecnología **verificable internacionalmente**.
 QA Automation Engineer  
 💼 Especializado en Playwright, CI/CD y Testing E2E  
 📧 contacto profesional: Fsosa9@gmail.com
+🌐 LinkedIn: [https://www.linkedin.com/in/fsosa9/](https://www.linkedin.com/in/fsosa9/)
+
